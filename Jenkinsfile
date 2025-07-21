@@ -15,6 +15,7 @@ pipeline {
 
         stage('Ejecutar Pruebas') {
             steps {
+                sh 'chmod +x node_modules/.bin/jest'
                 sh 'npx jest'
             }
         }
