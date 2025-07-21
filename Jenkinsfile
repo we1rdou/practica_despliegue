@@ -6,14 +6,32 @@ pipeline {
         dockerTool 'Dockertool'  // Cambia el nombre de la herramienta según tu configuración en Jenkins
     }
 
+    stages('Instalar Dependencias') {
+        steps {
+            sh 'npm install'
+        }
+    }
+
+    stages('Ejecutar Pruebas') {
+        steps {
+            sh 'npm test'
+        }
+    }
+
     stages {
         stage('Construir Imagen Docker') {
+            when{
+                expression{ currentBuild.result == null || currentBuild.result == 'SUCCESS'}
+            }
             steps {
                 sh 'docker build -t hola-mundo-node:latest .'
             }
         }
 
         stage('Ejecutar Contenedor Node.js') {
+            when{
+                expression{ currentBuild.result == null || currentBuild.result == 'SUCCESS'}
+            }
             steps {
                 sh '''
                     # Detener y eliminar cualquier contenedor previo
