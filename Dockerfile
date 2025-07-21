@@ -9,7 +9,7 @@ COPY package*.json ./
 COPY index.js .
 
 #Copiar el resto de los archivos
-COPY  user.json .
+COPY  users.json .
 
 # Instalar dependencias
 RUN npm install
