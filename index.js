@@ -28,7 +28,7 @@ const writeDatabase = (data) => {
 // CRUD de usuarios
 app.get('/', (req, res) => {
     const msg = {
-        message: 'Servidor en ejecucion en el puerto 3000',
+        message: 'Servidor en ejecucion bonito en el puerto 3000',
         status: 200
     }
     res.json(msg);
